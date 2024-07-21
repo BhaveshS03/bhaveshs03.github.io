@@ -1,0 +1,32 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ParticlesBackground from "../components/ParticlesBackground.svelte";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <style>
+            main {
+                max-width: 960px;
+            }
+        </style>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <ParticlesBackground client:only="svelte" />
+            <div class="">
+                <img
+                    src="https://assets.newatlas.com/dims4/default/17ac9ed/2147483647/strip/true/crop/1280x720+0+0/resize/1920x1080!/quality/90/?url=http%3A%2F%2Fnewatlas-brightspot.s3.amazonaws.com%2Farchive%2Fhow-to-find-beat-lynel-botw-5.jpg"
+                />
+                Take a look at lynel from BOTW.😨
+            </div>
+            <Footer />
+        </main>
+    </body>
+</html>

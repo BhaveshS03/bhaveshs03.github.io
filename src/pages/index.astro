@@ -1,0 +1,58 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ParticlesBackground from "../components/ParticlesBackground.svelte";
+import ClickCounter from "../components/clickCounter.svelte";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body>
+        <ParticlesBackground client:only="svelte" />
+        <Header />
+        <main>
+            <h1 class="abc">🧑‍🚀 Hello, Internet!</h1>
+            <p>
+                A curious Hooman into the fields of computing and electronics,
+                doing dumb projects
+            </p>
+            <p>
+                Welcome to my blog, Hope you are doing well. You will like it
+                here. I am a web developer and I love to write about web
+                development. I'm into Low level stuff too you can checkout my
+                stuff on <a href="https://github.com/BhaveshS03"> Github</a>
+            </p>
+            <p>
+                Currently finding korok seeds in Hyrule. 🌱 in Zelda: Tears of
+                the Kingdom
+            </p>
+            <p>
+                This webpage is going to be a showcase of my projects, my
+                thoughts, and my experiences. I will be sharing my knowledge and
+                my experiences with you. I hope you will like it.
+            </p>
+            <ul>
+                <li>
+                    Feel free to check out my <a href="/blog">
+                        Projects and Blog</a
+                    >
+                    <!-- <ClickCounter client:load /> -->
+                </li>
+                <li>More Project Blogs coming soon...</li>
+            </ul>
+            <p>
+                Have fun! You can contact me <a
+                    href="email:bhaveshsonar003@gmail.com"
+                >
+                    Here
+                </a>
+            </p>
+        </main>
+        <Footer />
+    </body>
+</html>
