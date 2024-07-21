@@ -1,11 +1,11 @@
 <script>
     import { onMount } from "svelte";
-    import "particles.js";
+    import "../../public/particles.js";
 
     onMount(() => {
         particlesJS.load(
             "particles-js",
-            "/particlesjs-config-new.json",
+            "/Weby/particlesjs-config-new.json",
             function () {
                 console.log("particles.js loaded - callback");
             },
