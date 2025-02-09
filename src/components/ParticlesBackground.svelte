@@ -5,7 +5,7 @@
     onMount(() => {
         particlesJS.load(
             "particles-js",
-            "/Weby/particlesjs-config-new.json",
+            "/particlesjs-config-new.json",
             function () {
                 console.log("particles.js loaded - callback");
             },
