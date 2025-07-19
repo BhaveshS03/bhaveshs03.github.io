@@ -7,6 +7,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://BhaveshS03.github.io",
-  base: "",
+  base: "/",
   integrations: [mdx(), sitemap(), svelte()],
 });
