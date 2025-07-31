@@ -49,12 +49,12 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     color: rgb(var(--text));
-    font-size: 22px;
-    line-height: 1.7;
+    font-size: 18px; /* Reduced from 22px to make text smaller */
+    line-height: 1.6; /* Slightly reduced for a denser feel */
 }
 
 main {
-    width: 720px;
+    width: 960px; /* Increased from 720px for a wider layout */
     max-width: calc(100% - 2em);
     margin: auto;
     padding: 3em 1em;
@@ -139,7 +139,7 @@ hr {
 }
 @media (max-width: 720px) {
     body {
-        font-size: 18px;
+        font-size: 16px; /* Adjusted for mobile view, relative to the new base font size */
     }
     main {
         padding: 1em;

@@ -4,9 +4,11 @@ import svelte from "@astrojs/svelte";
 
 import sitemap from "@astrojs/sitemap";
 
+import react from "@astrojs/react";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://BhaveshS03.github.io",
   base: "/",
-  integrations: [mdx(), sitemap(), svelte()],
+  integrations: [mdx(), sitemap(), svelte(), react()],
 });

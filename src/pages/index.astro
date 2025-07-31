@@ -4,13 +4,291 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import ParticlesBackground from "../components/ParticlesBackground.svelte";
-import ClickCounter from "../components/clickCounter.svelte";
+import ProjectCard from "../components/ProjectCard.svelte";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import "../styles/projects.css";
+const posts = (await getCollection("blog")).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+);
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+        <style>
+            /* Styles for the blog post list */
+            .blog-posts-section ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2rem;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            .blog-posts-section ul li {
+                width: calc(50% - 1rem);
+                /* Added for card-like appearance */
+                background-color: var(--card-background, #2d3748); /* Example background */
+                border-radius: 12px;
+                overflow: hidden; /* Ensures rounded corners apply to image */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+                display: flex; /* Flexbox for internal layout */
+                flex-direction: column; /* Stack content vertically */
+                transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added transition for hover */
+            }
+            .blog-posts-section ul li * {
+                text-decoration: none;
+                transition: 0.2s ease;
+            }
+            .blog-posts-section ul li img {
+                width: 100%; /* Make image fill its container */
+                height: 200px; /* Fixed height for consistency, adjust as needed */
+                object-fit: cover; /* Cover the area, cropping if necessary */
+                margin-bottom: 0; /* Remove default margin */
+                border-radius: 12px 12px 0 0; /* Top corners rounded */
+            }
+            .blog-posts-section ul li a {
+                display: flex; /* Use flexbox for the link content */
+                flex-direction: column; /* Stack image, title, desc, date */
+                height: 100%; /* Make link fill the whole card */
+                padding: 1rem; /* Padding inside the card content */
+                color: inherit; /* Inherit text color */
+            }
+            .blog-posts-section .title {
+                margin: 0.5rem 0 0.25rem 0; /* Adjusted margin */
+                color: rgb(var(--text));
+                line-height: 1.2;
+                font-size: 1.5rem; /* Make title slightly larger */
+            }
+            .blog-posts-section .description {
+                margin: 0 0 0.5rem 0;
+                color: rgb(var(--subtext));
+                font-size: 0.95rem;
+                flex-grow: 1; /* Allows description to take available space */
+            }
+            .blog-posts-section .date {
+                margin: 0;
+                color: rgb(var(--subtext));
+                font-size: 0.85rem;
+                text-align: right; /* Align date to the right */
+            }
+            .blog-posts-section ul li a:hover h4,
+            .blog-posts-section ul li a:hover .date {
+                color: rgb(var(--lavender));
+            }
+            .blog-posts-section ul li:hover { /* Changed from ul a:hover to ul li:hover to target the card */
+                box-shadow: var(--box-shadow);
+                transform: translateY(-5px); /* Lift effect on hover */
+            }
+            .blog-posts-section ul li a:hover img { /* Ensure image shadow is removed on hover if needed */
+                box-shadow: none;
+            }
+            @media (max-width: 720px) {
+                .blog-posts-section ul {
+                    gap: 0.5em;
+                }
+                .blog-posts-section ul li {
+                    width: 100%;
+                    text-align: center;
+                }
+                .blog-posts-section ul li:first-child {
+                    margin-bottom: 0;
+                }
+                .blog-posts-section ul li:first-child .title {
+                    font-size: 1.563em;
+                }
+                .blog-posts-section ul li img {
+                    border-radius: 12px; /* All corners rounded on small screens */
+                }
+                .blog-posts-section ul li a {
+                    padding: 0.5rem; /* Less padding on small screens */
+                }
+            }
+
+            /* Styles for Featured Projects */
+            .projects-section {
+                margin: 3rem 0;
+            }
+
+            .projects-section h2 {
+                margin-bottom: 2rem;
+                color: rgb(var(--text));
+                font-size: 2rem;
+            }
+
+            .project-card {
+                background: var(--card-background, #2d3748);
+                border-radius: 16px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            }
+
+            .project-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .project-date {
+                color: rgb(var(--subtext));
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+
+            .project-title {
+                color: rgb(var(--text));
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                letter-spacing: -0.02em;
+            }
+
+            .project-mockup {
+                width: 100%;
+                height: 200px;
+                background: var(--card-background, #1a1a1a);
+                border-radius: 12px;
+                margin-bottom: 1.5rem;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgb(var(--subtext));
+                font-size: 0.9rem;
+            }
+
+            .project-description {
+                color: rgb(var(--text));
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
+            }
+
+            .tech-stack {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .tech-badge {
+                background: rgba(255, 255, 255, 0.1);
+                color: rgb(var(--text));
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.2s ease;
+                cursor: pointer;
+            }
+
+            .tech-badge:hover {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.3);
+                transform: translateY(-1px);
+            }
+
+            .special-badge {
+                background: linear-gradient(135deg, rgb(var(--lavender)) 0%, rgba(var(--lavender), 0.8) 100%);
+                border-color: rgb(var(--lavender));
+                color: white;
+            }
+
+            .special-badge:hover {
+                background: linear-gradient(135deg, rgb(var(--lavender)) 0%, rgba(var(--lavender), 0.9) 100%);
+            }
+
+            /* Styles for Internship Experiences */
+            .internship-section {
+                margin-top: 3rem;
+            }
+
+            .internship-section h2 {
+                margin-bottom: 1.5rem;
+                color: rgb(var(--text));
+            }
+
+            .internship-entry {
+                background-color: var(--card-background, #2d3748);
+                border-radius: 12px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added transition for hover */
+            }
+
+            .internship-entry:hover { /* Hover effect for internship cards */
+                box-shadow: var(--box-shadow); /* Use the defined box-shadow variable */
+                transform: translateY(-5px); /* Lift effect on hover */
+            }
+
+            .internship-entry h3 {
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+                color: rgb(var(--lavender));
+                font-size: 1.3rem;
+            }
+
+            .internship-entry p.role {
+                font-weight: bold;
+                color: rgb(var(--text));
+                margin-bottom: 0.25rem;
+            }
+
+            .internship-entry p.duration {
+                font-size: 0.9rem;
+                color: rgb(var(--subtext));
+                margin-bottom: 1rem;
+            }
+
+            .internship-entry ul {
+                list-style-type: disc;
+                margin-left: 1.25rem;
+                padding: 0;
+                color: rgb(var(--text));
+            }
+
+            .internship-entry ul li {
+                margin-bottom: 0.5rem;
+            }
+
+            @media (max-width: 768px) {
+                .project-card {
+                    padding: 1.5rem;
+                }
+                
+                .project-title {
+                    font-size: 2rem;
+                }
+                
+                .project-mockup {
+                    height: 150px;
+                }
+                
+                .tech-stack {
+                    gap: 0.5rem;
+                }
+                
+                .tech-badge {
+                    padding: 0.375rem 0.75rem;
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
     </head>
     <body>
         <ParticlesBackground client:only="svelte" />
@@ -36,22 +314,148 @@ import ClickCounter from "../components/clickCounter.svelte";
                 thoughts, and my experiences. I will be sharing my knowledge and
                 my experiences with you. I hope you will like it.
             </p>
-            <ul>
-                <li>
-                    Feel free to check out my <a href="/blog">
-                        Projects and Blog</a
-                    >
-                    <!-- <ClickCounter client:load /> -->
-                </li>
-                <li>More Project Blogs coming soon...</li>
-            </ul>
+
             <p>
                 Have fun! You can contact me <a
-                    href="email:bhaveshsonar003@gmail.com"
+                    href="mailto:bhaveshsonar003@gmail.com"
                 >
                     Here
                 </a>
             </p>
+
+            ---
+
+            <section class="projects-section">
+                <h2>Featured Projects</h2>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-date">May 2024 - Present ✦ In Progress</div>
+                        <h3 class="project-title">Aesterisk</h3>
+                    </div>
+                    
+                    <div class="project-mockup">
+                        <span>📊 Server Management Dashboard</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Aesterisk is a server management platform, providing a user-friendly interface for your self-hosted servers. Aesterisk integrates with Docker to containerize your servers, and builds on our custom-built crate for Aesterisk ↔ Docker communication. Aesterisk is built and operated completely by me, and I'm planning to release it as a SaaS once finished.
+                    </p>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-badge special-badge">
+                            ⚡ View on GitHub
+                        </div>
+                        <div class="tech-badge">🦀 Rust</div>
+                        <div class="tech-badge">▲ Next.js</div>
+                        <div class="tech-badge">🐘 PostgreSQL</div>
+                        <div class="tech-badge">🐳 Docker</div>
+                        <div class="tech-badge">TS TypeScript</div>
+                        <div class="tech-badge">/ shadcn/ui</div>
+                        <div class="tech-badge">🔐 Auth.js</div>
+                        <div class="tech-badge">⚛ React</div>
+                        <div class="tech-badge">🎨 Tailwind CSS</div>
+                    </div>
+                </div>
+
+                <!-- Add more project cards here -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-date">Jan 2024 - Apr 2024 ✦ Completed</div>
+                        <h3 class="project-title">Your Next Project</h3>
+                    </div>
+                    
+                    <div class="project-mockup">
+                        <span>🚀 Web Application Interface</span>
+                    </div>
+                    
+                    <p class="project-description">
+                        Describe your project here. What problem does it solve? What technologies did you use? What were the key challenges and how did you overcome them?
+                    </p>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-badge special-badge">
+                            ⚡ View Live Demo
+                        </div>
+                        <div class="tech-badge">⚛ React</div>
+                        <div class="tech-badge">🟢 Node.js</div>
+                        <div class="tech-badge">🍃 MongoDB</div>
+                        <div class="tech-badge">🎨 CSS3</div>
+                    </div>
+                </div>
+            </section>
+
+            ---
+
+            <section class="internship-section">
+                <h2>Internship Experiences</h2>
+                <div class="internship-entry">
+                    <h3>[Company Name 1]</h3>
+                    <p class="role">Your Role/Position</p>
+                    <p class="duration">[Start Date] – [End Date]</p>
+                    <ul>
+                        <li>
+                            Successfully designed and developed [specific project/feature] using [technologies used].
+                        </li>
+                        <li>
+                            Collaborated with [team/department] to [achieved outcome].
+                        </li>
+                        <li>
+                            Implemented [technique/method] which led to [quantifiable result, e.g., improved performance by X%].
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="internship-entry">
+                    <h3>[Company Name 2]</h3>
+                    <p class="role">Another Role/Position</p>
+                    <p class="duration">[Start Date] – [End Date]</p>
+                    <ul>
+                        <li>
+                            Contributed to [project name] by [specific task].
+                        </li>
+                        <li>
+                            Gained hands-on experience with [software/tools].
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            ---
+
+            <section class="blog-posts-section">
+                <h2>Latest Blog Posts</h2>
+                <ul>
+                    {
+                        posts.map((post) => (
+                            <li>
+                                <a href={`/blog/${post.slug}/`}>
+                                    <img
+                                        width={420}
+                                        height={360}
+                                        src={post.data.heroImage}
+                                        alt=""
+                                    />
+                                    <h4 class="title">{post.data.title}</h4>
+                                    <p class="description">
+                                        {post.data.description}
+                                    </p>
+                                    <p class="date">
+                                        <FormattedDate
+                                            date={post.data.pubDate}
+                                        />
+                                    </p>
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+                <p>
+                    Feel free to check out all my <a href="/blog">
+                        Projects and Blog posts</a
+                    >
+                </p>
+            </section>
         </main>
         <Footer />
     </body>
