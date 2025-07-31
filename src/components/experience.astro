@@ -1,0 +1,106 @@
+---
+// experience.astro
+import ExperienceTimeline from '../components/ExperienceTimeline.svelte'
+
+// Define your experience data inside the frontmatter
+const experiences = [
+  {
+    title: "Full Stack Developer",
+    content: "Worked on a full-stack DMRV (Digital Measurement, Reporting & Verification) system for biomass pyrolysis, supporting MRV compliance and carbon credit generation. Maintained a React Native mobile app with RESTful API integration for real-time field data collection (e.g., pyrolysis temperature, moisture %, biochar yield). Engineered scalable backend services using Node.js and JavaScript, with PostgreSQL, and containerized the stack with Docker for cross-environment consistency. Implemented robust data validation using Joi schemas to enforce input correctness and consistency, alongside verification pipelines ensuring cryptographic integrity and auditability aligned with carbon accounting frameworks. Contributed to system design for transforming agricultural waste into biochar, enabling long-term carbon sequestration and emissions reduction.",
+    time: "04/2025-Present",
+    state: "Sprogsense, Panchkula, Haryana",
+    tags: [
+      { name: "React Native", icon: "⚛️" },
+      { name: "Node.js", icon: "🟢" },
+      { name: "JavaScript", icon: "JS" },
+      { name: "PostgreSQL", icon: "🐘" },
+      { name: "Docker", icon: "🐳" },
+      { name: "Joi", icon: "📝" }
+    ],
+  },
+  {
+    title: "Full Stack Developer",
+    content: "Designed and developed a real-time gate control system using MQTT for in-house device communication across Android and iOS apps built with React Native. Managed backend data with MySQL and Sequelize ORM for robust database operations. Conducted public testing and successfully deployed the system in real-world environments.",
+    time: "02/2024-07/2024",
+    state: "Athena Automation, Pune",
+    tags: [
+      { name: "React Native", icon: "⚛️" },
+      { name: "MQTT", icon: "🌐" },
+      { name: "MySQL", icon: "🗄️" },
+      { name: "Sequelize ORM", icon: "📊" }
+    ],
+  },
+  {
+    title: "Gate Control System (Project)",
+    content: "Spearheaded the deployment of a gate control system utilizing MQTT Protocol for real-time device communication, integrating geofencing for enhanced security. Implemented a custom REST API with JWT authorization for secure access. Utilized React Native for frontend development, resulting in enhanced user interface and efficiency. Integrated MySQL with Sequelize ORM for robust database management. Key features: Seamless Device Communication (enabled real-time control and monitoring of gate systems through MQTT, providing reliable and low-latency device communication). Geolock (implemented geofencing to restrict access based on user location). Admin User Dashboard (designed an admin dashboard for managing users and system settings).",
+    time: "02/2024-07/2024",
+    state: "Athena Automation",
+    tags: [
+      { name: "MQTT Protocol", icon: "🌐" },
+      { name: "Geofencing", icon: "📍" },
+      { name: "REST API", icon: "🔗" },
+      { name: "JWT", icon: "🔑" },
+      { name: "React Native", icon: "⚛️" },
+      { name: "MySQL", icon: "🗄️" },
+      { name: "Sequelize ORM", icon: "📊" }
+    ],
+  },
+  {
+    title: "Mudra Talk (Project)",
+    content: "Designed and developed a React Native-based mobile application to enable seamless communication with Deaf individuals. Key Features: Intuitive and accessible UI crafted for real-time interaction. Integrated a native Android module to extract key points and enhance communication flow. Connected a machine learning (ML) model using REST APIs for efficient and accurate data exchange. Technologies Used: React Native, Java/Kotlin (Android native module), REST APIs, ML integration. Impact: Enabled efficient, user-friendly communication for the Deaf community, enhancing inclusivity and accessibility.",
+    time: "08/2024-09/2024",
+    state: "Personal Project",
+    tags: [
+      { name: "React Native", icon: "⚛️" },
+      { name: "Java/Kotlin", icon: "☕" },
+      { name: "REST APIs", icon: "🔗" },
+      { name: "ML Integration", icon: "🧠" }
+    ],
+  },
+  {
+    title: "Education",
+    content: "Bachelor of Engineering, Savitribai Phule Pune University (8.5 CGPA), expected 08/2026. 12th Board, Orion CBSE English Medium School (75%), 2022. 10th Board, Orion CBSE English Medium School (83%), 2020.",
+    time: "Ongoing",
+    state: "Academics"
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience & Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- <h1 class="section-title">Experience & Projects</h1> -->
+    <ExperienceTimeline experiences={experiences} client:load />
+    <ExperienceTimeline experiences={experiences} client:load />
+  </div>
+</body>
+</html>
