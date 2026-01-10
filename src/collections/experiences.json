@@ -1,23 +1,17 @@
 [
 	{
-		"dates": "June 2018 · Present",
-		"role": "Front-end Engineer",
-		"company": "Full Truck Alliance",
-		"description": "Responsible for customer service and CRM system front-end development.",
-		"logo": "/assets/images/experiences/fta.ico"
+		"dates": "Apr 2025 · Jul 2025",
+		"role": "Full Stack Developer Intern",
+		"company": "BeepWeep",
+		"description": "Collaborated on a full-stack suncarbon DMRV system for biomass pyrolysis and carbon credit generation. Maintained a React Native app integrated with RESTful APIs supporting 200+ artisans and sellers. Developed a scalable Node.js + PostgreSQL backend. Optimized response times by 80% using server-side pagination. Reduced page load time by 40% using lazy loading and accordions.",
+		"logo": "https://wellfound.com/cdn-cgi/image/width=240,height=140,fit=scale-down,gravity=0.5x0.5,quality=90,format=auto/https://photos.wellfound.com/startups/i/7936185-94846289c9a1b4a3205fbae079c5bce5-medium_jpg.jpg?buster=1597933358",
+		"url": "https://beepweep.com/"
 	},
 	{
-		"dates": "July 2015 · June 2018",
-		"role": "Front-end Engineer",
-		"company": "YOHO!",
-		"description": "Responsible for mobile front-end development of e-commerce platform.",
-		"logo": "/assets/images/experiences/yoho.ico"
-	},
-	{
-		"dates": "September 2014 · July 2015 ",
-		"role": "Node.JS Developer",
-		"company": "WuLian",
-		"description": "Intern, involved in the development of Internet of Things cloud systems.",
-		"logo": "/assets/images/experiences/wulian.ico"
+		"dates": "Feb 2024 · Jul 2024",
+		"role": "Full Stack Developer Intern",
+		"company": "Athena Automation",
+		"description": "Built a React Native + Expo mobile app for remote gate control with geolocation access. Implemented role-based access control (RBAC) for various user tiers. Integrated Paho-MQTT for real-time IoT communication. Designed UI using React Native Paper, Navigation, and Reanimated. Supported 100+ gates and 500+ concurrent users.",
+		"logo": "/assets/images/experiences/athena.jpg"
 	}
 ]

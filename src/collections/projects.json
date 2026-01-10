@@ -1,38 +1,50 @@
 [
 	{
-		"name": "TempMail.Best",
-		"description": "Best Temporary Email.",
-		"image": "/assets/images/projects/tempmail.best.png",
-		"url": "https://tempmail.best"
+		"name": "zenboy - GameBoy Emulator",
+		"description": "A sophisticated GameBoy Emulator written in C++. Developing an emulator requires deep knowledge of CPU architecture, memory mapping, and hardware registers.",
+		"image": "/assets/images/projects/zenboy.png",
+		"url": "https://github.com/BhaveshS03/zenboy"
 	},
 	{
-		"name": "DNS.Surf",
-		"description": "Querying DNS Resolution Results in Different Regions Worldwide.",
-		"image": "/assets/images/projects/dns.surf.png",
-		"url": "https://dns.surf"
+		"name": "Collabdocs-ui - Real-Time Collaboration Suite",
+		"description": "A real-time collaborative documentation suite built with TypeScript featuring complex state management and real-time synchronization protocols.",
+		"image": "/assets/images/projects/collabdocs-ui.png",
+		"url": "https://github.com/BhaveshS03/Collabdocs-ui"
 	},
 	{
-		"name": "HTML.ZONE",
-		"description": "Web Toolbox.",
-		"image": "/assets/images/projects/html.zone.png",
-		"url": "https://html.zone"
+		"name": "Chippy8 - CHIP-8 Emulator",
+		"description": "A CHIP-8 emulator written in Python, showcasing cross-language expertise in low-level system simulation.",
+		"image": "/assets/images/projects/chippy8.png",
+		"url": "https://github.com/BhaveshS03/Chippy8"
 	},
 	{
-		"name": "Sink",
-		"description": "A Simple / Speedy / Secure Link Shortener with Analytics.",
-		"image": "/assets/images/projects/sink.cool.png",
-		"url": "https://sink.cool"
+		"name": "PeerSync - File Transfer Utility",
+		"description": "A File Transfer Utility built with Python for networking and peer-to-peer data handling.",
+		"image": "/assets/images/projects/peersync.png",
+		"url": "https://github.com/BhaveshS03/PeerSync"
 	},
 	{
-		"name": "BroadcastChannel",
-		"description": "Turn your Telegram Channel into a MicroBlog.",
-		"image": "/assets/images/projects/broadcast-channel.png",
-		"url": "https://github.com/ccbikai/BroadcastChannel"
+		"name": "AgroAi_Models - Machine Learning Collection",
+		"description": "A collection of machine learning models focused on agriculture, developed in Jupyter Notebooks for crop disease detection and yield prediction.",
+		"image": "/assets/images/projects/agroai.png",
+		"url": "https://github.com/BhaveshS03/AgroAi_Models"
 	},
 	{
-		"name": "L(O*62).ONG",
-		"description": "Make your URL looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooonger",
-		"image": "/assets/images/projects/long.png",
-		"url": "https://loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo.ong"
+		"name": "Powermon - GNOME CPU Monitor",
+		"description": "A GNOME extension written in JavaScript to monitor AMD CPU power, interfacing with Linux system APIs.",
+		"image": "/assets/images/projects/powermon.png",
+		"url": "https://github.com/BhaveshS03/Powermon"
+	},
+	{
+		"name": "CyliViz - Visualization Tool",
+		"description": "A Python project focused on visualization, handling data for specific hardware or geometric parameters.",
+		"image": "/assets/images/projects/cyliviz.png",
+		"url": "https://github.com/BhaveshS03/CyliViz"
+	},
+	{
+		"name": "notes-app-backend",
+		"description": "A dedicated backend service for a notes application using TypeScript, demonstrating clean architectural separation between client and server.",
+		"image": "/assets/images/projects/notes-backend.png",
+		"url": "https://github.com/BhaveshS03/notes-app-backend"
 	}
 ]
